@@ -1,0 +1,35 @@
+{
+  "gnosisSafeEnterpriseEditionApp": {
+    "safeTransaction": {
+      "home": {
+        "title": "Safe Transactions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Safe Transaction",
+        "createOrEditLabel": "Create or edit a Safe Transaction",
+        "notFound": "No Safe Transactions found"
+      },
+      "created": "A new Safe Transaction is created with identifier {{ param }}",
+      "updated": "A Safe Transaction is updated with identifier {{ param }}",
+      "deleted": "A Safe Transaction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Safe Transaction {{ id }}?"
+      },
+      "submitted": "A Safe Transaction is submitted with identifier {{ param }}",
+      "submit": {
+        "question": "Are you sure you want to submit Safe Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Safe Transaction"
+      },
+      "id": "ID",
+      "comment": "Comment",
+      "token": "Token",
+      "value": "Value",
+      "receiver": "Receiver",
+      "created": "Created",
+      "signedTransactions": "Signed Transactions",
+      "creator": "Creator",
+      "gnosisSafe": "Gnosis Safe"
+    }
+  }
+}

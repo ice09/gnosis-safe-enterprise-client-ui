@@ -1,0 +1,41 @@
+{
+  "name": "SignedTransaction",
+  "fields": [
+    {
+      "fieldName": "signedTx",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "salt",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "signedTransaction",
+      "relationshipValidateRules": "required",
+      "relationshipName": "signer",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "safeTransaction",
+      "otherEntityRelationshipName": "signedTransactions",
+      "relationshipValidateRules": "required",
+      "relationshipName": "safeTransaction"
+    }
+  ],
+  "entityTableName": "signed_transaction",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["GnosisSafeEnterpriseEdition"],
+  "changelogDate": "20210509181341"
+}

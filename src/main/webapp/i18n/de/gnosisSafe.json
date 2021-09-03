@@ -1,0 +1,32 @@
+{
+  "gnosisSafeEnterpriseEditionApp": {
+    "gnosisSafe": {
+      "home": {
+        "title": "Gnosis Safes",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Gnosis Safe erstellen",
+        "createOrEditLabel": "Gnosis Safe erstellen oder bearbeiten",
+        "notFound": "Keine Gnosis Safes gefunden"
+      },
+      "created": "Gnosis Safe erstellt mit ID {{ param }}",
+      "updated": "Gnosis Safe aktualisiert mit ID {{ param }}",
+      "deleted": "Gnosis Safe gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Gnosis Safe {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "setup": "Gnosis Safe setup mit ID {{ param }}",
+      "setup": {
+        "question": "Soll Gnosis Safe {{ id }} wirklich setuped werden?"
+      },
+      "detail": {
+        "title": "Gnosis Safe"
+      },
+      "id": "ID",
+      "name": "Name",
+      "address": "Address",
+      "signatures": "Signatures",
+      "transactions": "Transactions",
+      "owners": "Owners"
+    }
+  }
+}

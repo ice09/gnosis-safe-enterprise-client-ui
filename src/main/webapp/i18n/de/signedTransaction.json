@@ -1,0 +1,27 @@
+{
+  "gnosisSafeEnterpriseEditionApp": {
+    "signedTransaction": {
+      "home": {
+        "title": "Signed Transactions",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Signed Transaction erstellen",
+        "createOrEditLabel": "Signed Transaction erstellen oder bearbeiten",
+        "notFound": "Keine Signed Transactions gefunden"
+      },
+      "created": "Signed Transaction erstellt mit ID {{ param }}",
+      "updated": "Signed Transaction aktualisiert mit ID {{ param }}",
+      "deleted": "Signed Transaction gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Signed Transaction {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Signed Transaction"
+      },
+      "id": "ID",
+      "signedTx": "Signed Tx",
+      "salt": "Salt",
+      "signer": "Signer",
+      "safeTransaction": "Safe Transaction"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "gnosisSafeEnterpriseEditionApp": {
+    "gnosisSafe": {
+      "home": {
+        "title": "Gnosis Safes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Gnosis Safe",
+        "createOrEditLabel": "Create or edit a Gnosis Safe",
+        "notFound": "No Gnosis Safes found"
+      },
+      "created": "A new Gnosis Safe is created with identifier {{ param }}",
+      "updated": "A Gnosis Safe is updated with identifier {{ param }}",
+      "deleted": "A Gnosis Safe is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gnosis Safe {{ id }}?"
+      },
+      "setup": "A Gnosis Safe was setup with identifier {{ param }}",
+      "setup": {
+        "question": "Are you sure you want to setup Gnosis Safe {{ id }}?"
+      },
+      "detail": {
+        "title": "Gnosis Safe"
+      },
+      "id": "ID",
+      "name": "Name",
+      "address": "Address",
+      "signatures": "Signatures",
+      "transactions": "Transactions",
+      "owners": "Owners"
+    }
+  }
+}

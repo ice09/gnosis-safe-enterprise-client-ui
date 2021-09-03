@@ -1,0 +1,102 @@
+<div>
+  <h2 id="page-heading" data-cy="SafeTransactionHeading">
+    <span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.home.title">Safe Transactions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-safe-transaction"
+        [routerLink]="['/safe-transaction/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.home.createLabel"> Create a new Safe Transaction </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="safeTransactions?.length === 0">
+    <span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.home.notFound">No safeTransactions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="safeTransactions && safeTransactions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.comment">Comment</span></th>
+          <th scope="col"><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.token">Token</span></th>
+          <th scope="col"><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.value">Value</span></th>
+          <th scope="col"><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.receiver">Receiver</span></th>
+          <th scope="col"><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.created">Created</span></th>
+          <th scope="col"><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.creator">Creator</span></th>
+          <th scope="col"><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.gnosisSafe">Gnosis Safe</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let safeTransaction of safeTransactions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/safe-transaction', safeTransaction.id, 'view']">{{ safeTransaction.id }}</a>
+          </td>
+          <td>{{ safeTransaction.comment }}</td>
+          <td>{{ safeTransaction.token }}</td>
+          <td>{{ safeTransaction.value }}</td>
+          <td>{{ safeTransaction.receiver }}</td>
+          <td>{{ safeTransaction.created | formatMediumDatetime }}</td>
+          <td>
+            {{ safeTransaction.creator?.login }}
+          </td>
+          <td>
+            <div *ngIf="safeTransaction.gnosisSafe">
+              <a [routerLink]="['/gnosis-safe', safeTransaction.gnosisSafe?.id, 'view']">{{ safeTransaction.gnosisSafe?.name }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/safe-transaction', safeTransaction.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/safe-transaction', safeTransaction.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(safeTransaction)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+
+              <button type="button"
+                      class="btn btn-primary"
+                      (click)="submit(safeTransaction)">
+                <span>Submit</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

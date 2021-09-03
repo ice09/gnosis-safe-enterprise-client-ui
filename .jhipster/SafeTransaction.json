@@ -1,0 +1,62 @@
+{
+  "name": "SafeTransaction",
+  "fields": [
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "token",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "receiver",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "signedTransaction",
+      "otherEntityRelationshipName": "safeTransaction",
+      "relationshipName": "signedTransactions"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "safeTransaction",
+      "relationshipValidateRules": "required",
+      "relationshipName": "creator",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "gnosisSafe",
+      "otherEntityRelationshipName": "transactions",
+      "relationshipValidateRules": "required",
+      "relationshipName": "gnosisSafe",
+      "otherEntityField": "name"
+    }
+  ],
+  "entityTableName": "safe_transaction",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["GnosisSafeEnterpriseEdition"],
+  "changelogDate": "20210509181241"
+}

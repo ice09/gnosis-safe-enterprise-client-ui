@@ -1,0 +1,127 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-gnosis-safe-heading"
+        data-cy="GnosisSafeCreateUpdateHeading"
+        jhiTranslate="gnosisSafeEnterpriseEditionApp.gnosisSafe.home.createOrEditLabel"
+      >
+        Create or edit a Gnosis Safe
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gnosisSafeEnterpriseEditionApp.gnosisSafe.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gnosisSafeEnterpriseEditionApp.gnosisSafe.address" for="field_address"
+            >Address</label
+          >
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+          <div *ngIf="editForm.get('address')!.invalid && (editForm.get('address')!.dirty || editForm.get('address')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('address')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gnosisSafeEnterpriseEditionApp.gnosisSafe.signatures" for="field_signatures"
+            >Signatures</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="signatures"
+            id="field_signatures"
+            data-cy="signatures"
+            formControlName="signatures"
+          />
+          <div *ngIf="editForm.get('signatures')!.invalid && (editForm.get('signatures')!.dirty || editForm.get('signatures')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('signatures')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('signatures')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              This field should be at least 1.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('signatures')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 10 }"
+            >
+              This field cannot be more than 10.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('signatures')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="gnosisSafeEnterpriseEditionApp.gnosisSafe.owners" for="field_owners">Owners</label>
+          <select class="form-control" id="field_owners" data-cy="owners" multiple name="owners" formControlName="owners">
+            <option
+              [ngValue]="getSelectedUser(userOption, editForm.get('owners')!.value)"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.login }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['owners'])!.invalid && (editForm.get(['owners'])!.dirty || editForm.get(['owners'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['owners'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

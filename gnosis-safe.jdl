@@ -1,0 +1,78 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName GnosisSafeEnterpriseEdition
+    blueprints []
+    buildTool maven
+    cacheProvider hazelcast
+    clientFramework angularX
+    clientPackageManager npm
+    clientTheme none
+    creationTimestamp 1620583781937
+    databaseType sql
+    devDatabaseType h2Disk
+    dtoSuffix DTO
+    enableHibernateCache true
+    enableSwaggerCodegen true
+    enableTranslation true
+    jhiPrefix jhi
+    jhipsterVersion "7.0.1"
+    jwtSecretKey "MzBlMGRiMDllNjFkMGQ3MTE1NjM5OTkxNWZiYmE5ZWE5YTFlOTFmMzhlODA3NDFhMDFhNDQ1MTI2ZmEwODU1OWI3ODM0MjQzN2EzMWY3MDljYWNiYTg0ODEzNzkwNmY3ZTE4MWE1ZGQzZWI0NjE2ZmNiMzg4MDViMzYyOWNjNDM="
+    languages [en, de]
+    messageBroker false
+    nativeLanguage en
+    otherModules []
+    packageName tech.blockchainers.safe
+    prodDatabaseType postgresql
+    reactive false
+    searchEngine false
+    serverPort 8080
+    serviceDiscoveryType eureka
+    skipClient false
+    skipServer false
+    skipUserManagement false
+    testFrameworks [cucumber]
+    websocket false
+    withAdminUi true
+  }
+
+  entities SaltedUser, GnosisSafe, SafeTransaction, SignedTransaction
+}
+
+entity GnosisSafe {
+  name String required
+  address String required
+  signatures Integer required min(1) max(10)
+}
+entity SafeTransaction {
+  comment String
+  token String
+  value Integer required
+  receiver String required
+  created ZonedDateTime required
+}
+entity SignedTransaction {
+  signedTx String required
+  salt String
+}
+entity SaltedUser {
+  salt String
+  address String
+}
+
+relationship OneToOne {
+  SaltedUser{user(login) required} to User
+}
+relationship ManyToOne {
+  SafeTransaction{creator(login) required} to User
+  SignedTransaction{signer(login) required} to User
+}
+relationship OneToMany {
+  GnosisSafe{transactions} to SafeTransaction{gnosisSafe(name) required}
+  SafeTransaction{signedTransactions} to SignedTransaction{safeTransaction required}
+}
+relationship ManyToMany {
+  GnosisSafe{owners(login) required} to User
+}
+

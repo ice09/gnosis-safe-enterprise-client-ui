@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="safeTransaction">
+      <h2 data-cy="safeTransactionDetailsHeading">
+        <span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.detail.title">Safe Transaction</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ safeTransaction.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.comment">Comment</span></dt>
+        <dd>
+          <span>{{ safeTransaction.comment }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.token">Token</span></dt>
+        <dd>
+          <span>{{ safeTransaction.token }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.value">Value</span></dt>
+        <dd>
+          <span>{{ safeTransaction.value }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.receiver">Receiver</span></dt>
+        <dd>
+          <span>{{ safeTransaction.receiver }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.created">Created</span></dt>
+        <dd>
+          <span>{{ safeTransaction.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.creator">Creator</span></dt>
+        <dd>
+          <span>{{ safeTransaction.creator?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.safeTransaction.gnosisSafe">Gnosis Safe</span></dt>
+        <dd>
+          <div *ngIf="safeTransaction.gnosisSafe">
+            <a [routerLink]="['/gnosis-safe', safeTransaction.gnosisSafe?.id, 'view']">{{ safeTransaction.gnosisSafe?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/safe-transaction', safeTransaction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

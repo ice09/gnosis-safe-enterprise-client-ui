@@ -1,0 +1,26 @@
+{
+  "gnosisSafeEnterpriseEditionApp": {
+    "saltedUser": {
+      "home": {
+        "title": "Salted Users",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Salted User erstellen",
+        "createOrEditLabel": "Salted User erstellen oder bearbeiten",
+        "notFound": "Keine Salted Users gefunden"
+      },
+      "created": "Salted User erstellt mit ID {{ param }}",
+      "updated": "Salted User aktualisiert mit ID {{ param }}",
+      "deleted": "Salted User gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Salted User {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Salted User"
+      },
+      "id": "ID",
+      "salt": "Salt",
+      "address": "Address",
+      "user": "User"
+    }
+  }
+}

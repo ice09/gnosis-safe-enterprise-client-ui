@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="signedTransaction">
+      <h2 data-cy="signedTransactionDetailsHeading">
+        <span jhiTranslate="gnosisSafeEnterpriseEditionApp.signedTransaction.detail.title">Signed Transaction</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ signedTransaction.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.signedTransaction.signedTx">Signed Tx</span></dt>
+        <dd>
+          <span>{{ signedTransaction.signedTx }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.signedTransaction.signer">Signer</span></dt>
+        <dd>
+          <span>{{ signedTransaction.signer?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="gnosisSafeEnterpriseEditionApp.signedTransaction.safeTransaction">Safe Transaction</span></dt>
+        <dd>
+          <div *ngIf="signedTransaction.safeTransaction">
+            <a [routerLink]="['/safe-transaction', signedTransaction.safeTransaction?.id, 'view']">{{
+              signedTransaction.safeTransaction?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/signed-transaction', signedTransaction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
